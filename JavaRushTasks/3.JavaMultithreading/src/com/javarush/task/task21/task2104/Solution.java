@@ -14,27 +14,19 @@ public class Solution {
         this.last = last;
     }
 
-    public boolean equals(Solution n) {
-        if (n == null) {
-            return false;
-        }
-        if (!(n instanceof Solution)) {
-            return false;
-        }
-        if (this == n) {
-            return true;
-        }
-        Solution ss = (Solution) n;
-        if (first != null ? first.equals(ss.first) : ss.first != null) {
-            return false;
-        }
-        if (last != null ? last.equals(ss.last) : ss.last != null) {
-            return false;
-        }
-//        return n.first.equals(first) && n.last.equals(last);
-        return true;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Solution)) return false;
+
+        Solution solution = (Solution) o;
+
+        if (first != null ? !first.equals(solution.first) : solution.first != null) return false;
+        return last != null ? last.equals(solution.last) : solution.last == null;
     }
 
+    @Override
     public int hashCode() {
         int result = first != null ? first.hashCode() : 0;
         result = 31 * result + (last != null ? last.hashCode() : 0);
