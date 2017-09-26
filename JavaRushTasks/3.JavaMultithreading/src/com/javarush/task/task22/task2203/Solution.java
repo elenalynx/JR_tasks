@@ -10,14 +10,16 @@ public class Solution {
         if (string == null) {
             throw new TooShortStringException();
         }
+        if (string.length() < 2) {
+            throw new TooShortStringException();
+        }
         if (string.matches("^(.*\\t){2,}.*")) {
-            String firstTab = string.replaceFirst("\\t", "");
-            return firstTab.replaceFirst("\\t.*", "").trim();
+//            return string.replaceAll("^\\t([^\\t]+).*$", "$1");  //не принимает
+            return string.substring(string.indexOf("\t")+1, string.indexOf("\t", string.indexOf("\t")+1));
         } else {
             throw new TooShortStringException();
         }
     }
-    
 
     public static class TooShortStringException extends Exception {
     }
